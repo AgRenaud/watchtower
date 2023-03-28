@@ -1,0 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+html, body, pre, code, kbd, samp {
+    font-family: "Press Start 2P";
+}
+
+body {
+    margin: 10px;
+}
+
+.nes-progress {
+    height: 25px;
+    width: 150px;
+}

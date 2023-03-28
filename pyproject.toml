@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "watchtower"
+version = "0.1.0"
+description = ""
+authors = ["Renaud AGUIRRE CHAMBILLA <renaud.aguirrechambilla@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8.10"
+fastapi = "^0.95.0"
+uvicorn = "^0.21.1"
+psutil = "^5.9.4"
+websockets = "^10.4"
+
+[tool.poetry.group.dev.dependencies]
+python-lsp-server = "^1.7.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
