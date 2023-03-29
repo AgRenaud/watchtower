@@ -31,6 +31,7 @@ function init_cpu_usage(cpu_usage) {
 
     var coreSection = document.createElement("div");
     coreSection.id = id;
+    coreSection.className = "core-usage";
 
     var identifier = document.createElement("label")
     identifier.innerHTML = id;
@@ -38,7 +39,6 @@ function init_cpu_usage(cpu_usage) {
 
     var meter = document.createElement("meter");
     meter.id = id;
-    meter.className = "nes-progress is-primary";
     meter.max = 100;
     meter.min = 0;
     meter.optimum = 0;

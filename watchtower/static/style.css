@@ -1,14 +1,23 @@
-@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
-
-html, body, pre, code, kbd, samp {
-    font-family: "Press Start 2P";
-}
-
 body {
     margin: 10px;
 }
 
-.nes-progress {
-    height: 25px;
-    width: 150px;
+.cpu-usage-section {
+    display: inline;
+}
+
+.core-usage {
+    height: .1em;
+    margin: 2em;
+    display: block
+}
+
+.core-usage p {
+    display: inline;
+    text-align: right;
+    margin-left: 20px;
+}
+
+.core-usage label {
+    margin-right: 20px;
 }
