@@ -5,15 +5,24 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Include htmx and htmx-client-side-rendering -->
-    <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
-  </head>
+    <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+    <script src="https://unpkg.com/mustache@latest"></script>
+</head>
   <body>
     <h1>Watchtower</h1>
-    <script src="script.js"></script>
 
-    <div hx-ws="connect:wss:/ws">
-       
+        <script>
+            htmx.logAll();
+        </script>
+
+    <div hx-ext="client-side-templates">
+        <div hx-ext="ws" ws-connect="/ws">
+        </div>
+
+        <div id="metrics" hx-swap-oob="beforeend"></div>
+
     </div>
   </body>
 </html>
