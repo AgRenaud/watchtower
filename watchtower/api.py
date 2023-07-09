@@ -88,7 +88,6 @@ class MachineProfiler:
 			await websocket.close()
 
 
-
 def create_app() -> FastAPI:
 	app = FastAPI()
 	profiler = MachineProfiler()
