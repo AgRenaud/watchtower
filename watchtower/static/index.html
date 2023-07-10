@@ -5,24 +5,67 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Include htmx and htmx-client-side-rendering -->
-    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.0"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
-    <script src="https://unpkg.com/mustache@latest"></script>
+    <script src="https://mozilla.github.io/nunjucks/files/nunjucks.js"></script>
 </head>
   <body>
     <h1>Watchtower</h1>
 
-        <script>
-            htmx.logAll();
-        </script>
-
-    <div hx-ext="client-side-templates">
-        <div hx-ext="ws" ws-connect="/ws">
+    <div hx-ext="ws,client-side-templates">
+        <div ws-connect="/ws"
+                hx-target="#metrics"
+                nunjucks-template="metrics-template">
         </div>
+            <p id="metrics"></p>
+    </div>
 
-        <div id="metrics" hx-swap-oob="beforeend"></div>
 
+        <script id="metrics-template" type="x-tmpl-nunjucks">
+            <div id="metrics">
+                <div id="cpu-usage">
+                    <h2>CPU Usage</h2>
+                    <div id="cpu-usage-section">
+                        {% for cpu in cpu_usage %}
+                        <div id="core-{{ loop.index }}" className="core-usage">
+                            <label>core-{{ loop.index }}</label>
+                            <meter 
+                                id="mem-usage-progress-bar" 
+                                value="{{ cpu.ratio }}" 
+                                min="0"
+                                max="100"
+                                low="33" 
+                                high="66" 
+                                optimum="0"
+                            ></meter>
+                            <p>{{ cpu.ratio }} %</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div id="mem-usage">
+                    <h2>Memory Usage</h2>
+                    <meter 
+                    id="mem-usage-progress-bar" 
+                    value="{{ mem_usage.mem_used }}"
+                    min="0"
+                    max="{{ mem_usage.mem_total }}"
+                    optimum="0"
+                    ></meter> 
+                </div>
+                <div id="disk-usage">
+                    <h2>Disk Usage</h2>
+                    <meter 
+                    id="disk-usage-progress-bar" 
+                    value="{{ disk_usage.disk_used }}"
+                    min="0"
+                    max="{{ disk_usage.disk_total }}"
+                    optimum="0"
+                    ></meter>
+                </div>    
+            <div>
+            </script
     </div>
   </body>
 </html>
